@@ -357,7 +357,7 @@ const faqs = [
 const FaqSection = () => {
   const [openIdx, setOpenIdx] = useState(0);
   return (
-    <section style={{ background: 'var(--navy)', padding: '20px 16px' }}>
+    <section className="section-pad" style={{ background: 'var(--navy)', padding: '20px 16px' }}>
       <Eyebrow light>COMMON QUESTIONS</Eyebrow>
       <SectionH2 white>Frequently Asked</SectionH2>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
