@@ -228,7 +228,7 @@ const steps = [
 ];
 
 const HowItWorks = () => (
-  <section style={{ background: 'var(--off)', padding: '20px 16px' }}>
+  <section className="section-pad" style={{ background: 'var(--off)', padding: '20px 16px' }}>
     <Eyebrow>HOW IT WORKS</Eyebrow>
     <SectionH2>3 Simple Steps to Get Started</SectionH2>
     <div className="steps-container">
