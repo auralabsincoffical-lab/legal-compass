@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, FormEvent } from 'react';
 
+declare function gtag(...args: unknown[]): void;
 const PhoneSvg = ({ size = 14 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
@@ -52,6 +53,9 @@ const SectionH2 = ({ children, white }: { children: string; white?: boolean }) =
 
 /* ═══ EXISTING SECTIONS ═══ */
 
+const trackWa = () => { if (typeof gtag !== 'undefined') gtag('event', 'whatsapp_click'); };
+const trackCall = () => { if (typeof gtag !== 'undefined') gtag('event', 'call_click'); };
+
 const StickyTopbar = () => (
   <header style={{
     position: 'sticky', top: 0, zIndex: 100,
@@ -64,13 +68,13 @@ const StickyTopbar = () => (
       <span style={{ color: '#fff' }}> & Associates</span>
     </div>
     <div style={{ display: 'flex', gap: 8 }}>
-      <a href="tel:+919800000000" style={{
+      <a href="tel:+919800000000" onClick={trackCall} style={{
         background: 'var(--gold)', color: 'var(--navy)', fontSize: 11, fontWeight: 700,
         padding: '7px 14px', borderRadius: 4, display: 'inline-flex', alignItems: 'center', gap: 4,
       }}>
         <PhoneSvg size={14} /> Call Now
       </a>
-      <a href="https://wa.me/919800000000" className="topbar-wa" style={{
+      <a href="https://wa.me/919800000000" onClick={trackWa} className="topbar-wa" style={{
         background: '#25D366', color: '#fff', fontSize: 11, fontWeight: 700,
         padding: '7px 14px', borderRadius: 4, display: 'none', alignItems: 'center', gap: 4,
       }}>
@@ -143,14 +147,14 @@ const HeroSection = () => (
             500+ clients trusted us with their family law matters
           </span>
         </div>
-        <a href="https://wa.me/919800000000" style={{
+        <a href="https://wa.me/919800000000" onClick={trackWa} style={{
           width: '100%', background: '#25D366', color: '#fff', fontSize: 15, fontWeight: 700,
           padding: 15, borderRadius: 8, display: 'flex', alignItems: 'center',
           justifyContent: 'center', gap: 8, marginBottom: 10, border: 'none', cursor: 'pointer',
         }}>
           <WhatsAppSvg size={17} /> WhatsApp Us — Free Consult
         </a>
-        <a href="tel:+919800000000" style={{
+        <a href="tel:+919800000000" onClick={trackCall} style={{
           width: '100%', background: 'rgba(255,255,255,0.08)',
           border: '1px solid rgba(255,255,255,0.2)', color: '#fff',
           fontSize: 14, fontWeight: 600, padding: 12, borderRadius: 8,
@@ -205,7 +209,7 @@ const TrustStats = () => (
 /* ═══ NEW SECTIONS ═══ */
 
 const PainSection = () => (
-  <section style={{ background: 'var(--navy)', padding: '20px 16px' }}>
+  <section className="section-pad" style={{ background: 'var(--navy)', padding: '20px 16px' }}>
     <Eyebrow>THE REALITY</Eyebrow>
     <div style={{
       background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(201,168,76,0.2)',
@@ -224,7 +228,7 @@ const steps = [
 ];
 
 const HowItWorks = () => (
-  <section style={{ background: 'var(--off)', padding: '20px 16px' }}>
+  <section className="section-pad" style={{ background: 'var(--off)', padding: '20px 16px' }}>
     <Eyebrow>HOW IT WORKS</Eyebrow>
     <SectionH2>3 Simple Steps to Get Started</SectionH2>
     <div className="steps-container">
@@ -255,7 +259,7 @@ const services = [
 ];
 
 const ServicesSection = () => (
-  <section style={{ background: '#fff', padding: '20px 16px' }}>
+  <section className="section-pad" style={{ background: '#fff', padding: '20px 16px' }}>
     <Eyebrow>WHAT WE HANDLE</Eyebrow>
     <SectionH2>Divorce & Family Law Services</SectionH2>
     <div className="services-grid">
@@ -277,7 +281,7 @@ const whyCards = [
 ];
 
 const WhyChooseUs = () => (
-  <section style={{ background: 'var(--off)', padding: '20px 16px' }}>
+  <section className="section-pad" style={{ background: 'var(--off)', padding: '20px 16px' }}>
     <Eyebrow>WHY CHOOSE US</Eyebrow>
     <SectionH2>What Sets Us Apart</SectionH2>
     <div className="why-cards">
@@ -306,7 +310,7 @@ const reviews = [
 ];
 
 const ReviewsSection = () => (
-  <section style={{ background: 'var(--off)', padding: '20px 16px' }}>
+  <section className="section-pad" style={{ background: 'var(--off)', padding: '20px 16px' }}>
     <Eyebrow>CLIENT REVIEWS</Eyebrow>
     <SectionH2>What Our Clients Say</SectionH2>
     {/* Google badge */}
@@ -325,7 +329,7 @@ const ReviewsSection = () => (
         <div style={{ fontSize: 11, color: '#888' }}>140+ Google Reviews</div>
       </div>
     </div>
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+    <div className="review-cards" style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
       {reviews.map((r, i) => (
         <div key={i} style={{
           background: '#fff', border: '1px solid var(--border-custom)',
@@ -353,7 +357,7 @@ const faqs = [
 const FaqSection = () => {
   const [openIdx, setOpenIdx] = useState(0);
   return (
-    <section style={{ background: 'var(--navy)', padding: '20px 16px' }}>
+    <section className="section-pad" style={{ background: 'var(--navy)', padding: '20px 16px' }}>
       <Eyebrow light>COMMON QUESTIONS</Eyebrow>
       <SectionH2 white>Frequently Asked</SectionH2>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -385,6 +389,118 @@ const FaqSection = () => {
   );
 };
 
+const CallbackForm = () => {
+  const [submitted, setSubmitted] = useState(false);
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const name = (form.elements.namedItem('name') as HTMLInputElement).value;
+    const phone = (form.elements.namedItem('phone') as HTMLInputElement).value;
+    if (!phone) { alert('Please enter your phone number'); return; }
+    setSubmitted(true);
+    fetch('/api/leads', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, phone, source: 'form', timestamp: new Date() }),
+    }).catch(() => {});
+  };
+
+  if (submitted) {
+    return (
+      <section className="section-pad" style={{ background: '#fff', padding: '20px 16px' }}>
+        <div style={{ textAlign: 'center', padding: '20px 0' }}>
+          <div style={{ fontSize: 24, marginBottom: 8 }}>✓</div>
+          <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--navy)' }}>
+            Thank you! We'll call you back within 30 minutes.
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  const inputStyle: React.CSSProperties = {
+    width: '100%', padding: '12px 14px', border: '1px solid var(--border-custom)',
+    borderRadius: 8, fontSize: 14, fontFamily: "'DM Sans', sans-serif",
+    outline: 'none', transition: 'border-color 0.2s',
+  };
+
+  return (
+    <section className="section-pad" style={{ background: '#fff', padding: '20px 16px' }}>
+      <Eyebrow>NOT READY TO CALL?</Eyebrow>
+      <h2 style={{
+        fontFamily: "'Playfair Display', serif", fontSize: 17, fontWeight: 700,
+        color: 'var(--navy)', marginBottom: 14,
+      }}>Request a Callback — Just Leave Your Number.</h2>
+      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 10, maxWidth: 460 }}>
+        <input name="name" type="text" placeholder="Your Name" style={inputStyle}
+          onFocus={e => e.currentTarget.style.borderColor = 'var(--gold)'}
+          onBlur={e => e.currentTarget.style.borderColor = 'var(--border-custom)'} />
+        <input name="phone" type="tel" placeholder="Phone Number" required style={inputStyle}
+          onFocus={e => e.currentTarget.style.borderColor = 'var(--gold)'}
+          onBlur={e => e.currentTarget.style.borderColor = 'var(--border-custom)'} />
+        <button type="submit" style={{
+          width: '100%', background: 'var(--gold)', color: 'var(--navy)',
+          fontSize: 14, fontWeight: 700, padding: 14, borderRadius: 8, border: 'none',
+          cursor: 'pointer', fontFamily: "'DM Sans', sans-serif", transition: 'opacity 0.2s',
+        }} onMouseEnter={e => e.currentTarget.style.opacity = '0.88'}
+           onMouseLeave={e => e.currentTarget.style.opacity = '1'}>
+          Request Free Callback →
+        </button>
+      </form>
+      <div style={{ display: 'flex', gap: 10, marginTop: 14 }}>
+        <a href="tel:+919800000000" onClick={trackCall} style={{
+          background: 'var(--gold)', color: 'var(--navy)', fontSize: 13, fontWeight: 700,
+          padding: '10px 18px', borderRadius: 6, display: 'flex', alignItems: 'center', gap: 6,
+        }}>
+          <PhoneSvg size={14} /> Call Now
+        </a>
+        <a href="https://wa.me/919800000000" onClick={trackWa} style={{
+          background: '#25D366', color: '#fff', fontSize: 13, fontWeight: 700,
+          padding: '10px 18px', borderRadius: 6, display: 'flex', alignItems: 'center', gap: 6,
+        }}>
+          <WhatsAppSvg size={15} /> WhatsApp
+        </a>
+      </div>
+    </section>
+  );
+};
+
+const Footer = () => (
+  <footer style={{
+    background: '#06111d', padding: 16, textAlign: 'center',
+    fontSize: 11, color: 'rgba(255,255,255,0.35)', lineHeight: 1.9,
+  }}>
+    <div style={{ fontWeight: 600, color: 'rgba(255,255,255,0.6)' }}>
+      Adv. Rajesh Mukherjee & Associates
+    </div>
+    <div>Bar Council Reg. · All consultations strictly confidential</div>
+    <div>Kolkata, West Bengal</div>
+  </footer>
+);
+
+const StickyBottomBar = () => (
+  <div className="sticky-bottom-bar" style={{
+    position: 'sticky', bottom: 0, zIndex: 200,
+    background: 'var(--navy)', borderTop: '1px solid rgba(255,255,255,0.08)',
+    padding: '10px 16px 16px', display: 'flex', gap: 10,
+  }}>
+    <a href="https://wa.me/919800000000?text=Hi%2C%20I%20need%20help%20with%20a%20divorce%20matter%20in%20Kolkata." target="_blank" rel="noopener" onClick={trackWa} style={{
+      flex: 1.4, background: '#25D366', color: '#fff', fontSize: 13, fontWeight: 700,
+      padding: '13px 10px', borderRadius: 8, border: 'none',
+      display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 7,
+    }}>
+      <WhatsAppSvg size={15} /> WhatsApp Now
+    </a>
+    <a href="tel:+919800000000" onClick={trackCall} style={{
+      flex: 1, background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.2)',
+      color: '#fff', fontSize: 13, fontWeight: 600,
+      padding: '13px 10px', borderRadius: 8,
+      display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 7,
+    }}>
+      <PhoneSvg size={14} /> Call Now
+    </a>
+  </div>
+);
+
 const Index = () => (
   <>
     <StickyTopbar />
@@ -397,6 +513,9 @@ const Index = () => (
     <WhyChooseUs />
     <ReviewsSection />
     <FaqSection />
+    <CallbackForm />
+    <Footer />
+    <StickyBottomBar />
   </>
 );
 
