@@ -90,6 +90,25 @@
     display: flex !important;
     align-items: center;
   }
+  .steps-container {
+    display: flex;
+    gap: 20px;
+  }
+  .steps-container > div {
+    flex: 1;
+    border-bottom: none !important;
+    border-right: 1px solid var(--border-custom);
+    padding: 14px 16px !important;
+  }
+  .steps-container > div:last-child {
+    border-right: none;
+  }
+  .services-grid {
+    grid-template-columns: 1fr 1fr 1fr !important;
+  }
+  .why-cards {
+    flex-direction: row !important;
+  }
 }
 
 @media (max-width: 767px) {
