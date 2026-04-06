@@ -109,6 +109,26 @@
   .why-cards {
     flex-direction: row !important;
   }
+  .why-cards > div {
+    flex: 1;
+  }
+  .review-cards {
+    flex-direction: row !important;
+  }
+  .review-cards > div {
+    flex: 1;
+  }
+  .section-pad {
+    padding: 60px 40px !important;
+  }
+  .section-pad > *, .section-pad > form {
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .sticky-bottom-bar {
+    display: none !important;
+  }
 }
 
 @media (max-width: 767px) {

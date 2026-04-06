@@ -389,6 +389,118 @@ const FaqSection = () => {
   );
 };
 
+const CallbackForm = () => {
+  const [submitted, setSubmitted] = useState(false);
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const name = (form.elements.namedItem('name') as HTMLInputElement).value;
+    const phone = (form.elements.namedItem('phone') as HTMLInputElement).value;
+    if (!phone) { alert('Please enter your phone number'); return; }
+    setSubmitted(true);
+    fetch('/api/leads', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, phone, source: 'form', timestamp: new Date() }),
+    }).catch(() => {});
+  };
+
+  if (submitted) {
+    return (
+      <section className="section-pad" style={{ background: '#fff', padding: '20px 16px' }}>
+        <div style={{ textAlign: 'center', padding: '20px 0' }}>
+          <div style={{ fontSize: 24, marginBottom: 8 }}>✓</div>
+          <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--navy)' }}>
+            Thank you! We'll call you back within 30 minutes.
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  const inputStyle: React.CSSProperties = {
+    width: '100%', padding: '12px 14px', border: '1px solid var(--border-custom)',
+    borderRadius: 8, fontSize: 14, fontFamily: "'DM Sans', sans-serif",
+    outline: 'none', transition: 'border-color 0.2s',
+  };
+
+  return (
+    <section className="section-pad" style={{ background: '#fff', padding: '20px 16px' }}>
+      <Eyebrow>NOT READY TO CALL?</Eyebrow>
+      <h2 style={{
+        fontFamily: "'Playfair Display', serif", fontSize: 17, fontWeight: 700,
+        color: 'var(--navy)', marginBottom: 14,
+      }}>Request a Callback — Just Leave Your Number.</h2>
+      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 10, maxWidth: 460 }}>
+        <input name="name" type="text" placeholder="Your Name" style={inputStyle}
+          onFocus={e => e.currentTarget.style.borderColor = 'var(--gold)'}
+          onBlur={e => e.currentTarget.style.borderColor = 'var(--border-custom)'} />
+        <input name="phone" type="tel" placeholder="Phone Number" required style={inputStyle}
+          onFocus={e => e.currentTarget.style.borderColor = 'var(--gold)'}
+          onBlur={e => e.currentTarget.style.borderColor = 'var(--border-custom)'} />
+        <button type="submit" style={{
+          width: '100%', background: 'var(--gold)', color: 'var(--navy)',
+          fontSize: 14, fontWeight: 700, padding: 14, borderRadius: 8, border: 'none',
+          cursor: 'pointer', fontFamily: "'DM Sans', sans-serif", transition: 'opacity 0.2s',
+        }} onMouseEnter={e => e.currentTarget.style.opacity = '0.88'}
+           onMouseLeave={e => e.currentTarget.style.opacity = '1'}>
+          Request Free Callback →
+        </button>
+      </form>
+      <div style={{ display: 'flex', gap: 10, marginTop: 14 }}>
+        <a href="tel:+919800000000" onClick={trackCall} style={{
+          background: 'var(--gold)', color: 'var(--navy)', fontSize: 13, fontWeight: 700,
+          padding: '10px 18px', borderRadius: 6, display: 'flex', alignItems: 'center', gap: 6,
+        }}>
+          <PhoneSvg size={14} /> Call Now
+        </a>
+        <a href="https://wa.me/919800000000" onClick={trackWa} style={{
+          background: '#25D366', color: '#fff', fontSize: 13, fontWeight: 700,
+          padding: '10px 18px', borderRadius: 6, display: 'flex', alignItems: 'center', gap: 6,
+        }}>
+          <WhatsAppSvg size={15} /> WhatsApp
+        </a>
+      </div>
+    </section>
+  );
+};
+
+const Footer = () => (
+  <footer style={{
+    background: '#06111d', padding: 16, textAlign: 'center',
+    fontSize: 11, color: 'rgba(255,255,255,0.35)', lineHeight: 1.9,
+  }}>
+    <div style={{ fontWeight: 600, color: 'rgba(255,255,255,0.6)' }}>
+      Adv. Rajesh Mukherjee & Associates
+    </div>
+    <div>Bar Council Reg. · All consultations strictly confidential</div>
+    <div>Kolkata, West Bengal</div>
+  </footer>
+);
+
+const StickyBottomBar = () => (
+  <div className="sticky-bottom-bar" style={{
+    position: 'sticky', bottom: 0, zIndex: 200,
+    background: 'var(--navy)', borderTop: '1px solid rgba(255,255,255,0.08)',
+    padding: '10px 16px 16px', display: 'flex', gap: 10,
+  }}>
+    <a href="https://wa.me/919800000000?text=Hi%2C%20I%20need%20help%20with%20a%20divorce%20matter%20in%20Kolkata." target="_blank" rel="noopener" onClick={trackWa} style={{
+      flex: 1.4, background: '#25D366', color: '#fff', fontSize: 13, fontWeight: 700,
+      padding: '13px 10px', borderRadius: 8, border: 'none',
+      display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 7,
+    }}>
+      <WhatsAppSvg size={15} /> WhatsApp Now
+    </a>
+    <a href="tel:+919800000000" onClick={trackCall} style={{
+      flex: 1, background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.2)',
+      color: '#fff', fontSize: 13, fontWeight: 600,
+      padding: '13px 10px', borderRadius: 8,
+      display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 7,
+    }}>
+      <PhoneSvg size={14} /> Call Now
+    </a>
+  </div>
+);
+
 const Index = () => (
   <>
     <StickyTopbar />
@@ -401,6 +513,9 @@ const Index = () => (
     <WhyChooseUs />
     <ReviewsSection />
     <FaqSection />
+    <CallbackForm />
+    <Footer />
+    <StickyBottomBar />
   </>
 );
 
