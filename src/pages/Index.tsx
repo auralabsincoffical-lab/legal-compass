@@ -51,7 +51,10 @@ const SectionH2 = ({ children, white }: { children: string; white?: boolean }) =
   }}>{children}</h2>
 );
 
-/* ═══ EXISTING SECTIONS ═══ */
+const PHONE = '+918240844919';
+const PHONE_DISPLAY = '+91 82408 44919';
+const WA_LINK = 'https://wa.me/918240844919';
+const WA_LINK_MSG = 'https://wa.me/918240844919?text=Hi%2C%20I%20need%20legal%20assistance.%20Please%20call%20me%20back.';
 
 const trackWa = () => { if (typeof gtag !== 'undefined') gtag('event', 'whatsapp_click'); };
 const trackCall = () => { if (typeof gtag !== 'undefined') gtag('event', 'call_click'); };
@@ -63,18 +66,18 @@ const StickyTopbar = () => (
     display: 'flex', justifyContent: 'space-between', alignItems: 'center',
   }}>
     <div style={{ fontSize: 12, fontWeight: 600 }}>
-      <span style={{ color: '#fff' }}>Adv. </span>
-      <span style={{ color: 'var(--gold)' }}>Rajesh Mukherjee</span>
-      <span style={{ color: '#fff' }}> & Associates</span>
+      <span style={{ color: '#fff' }}>S K </span>
+      <span style={{ color: 'var(--gold)' }}>Legal Consultancy</span>
+      <span style={{ color: '#fff' }}> & Services</span>
     </div>
     <div style={{ display: 'flex', gap: 8 }}>
-      <a href="tel:+919800000000" onClick={trackCall} style={{
+      <a href={`tel:${PHONE}`} onClick={trackCall} style={{
         background: 'var(--gold)', color: 'var(--navy)', fontSize: 11, fontWeight: 700,
         padding: '7px 14px', borderRadius: 4, display: 'inline-flex', alignItems: 'center', gap: 4,
       }}>
         <PhoneSvg size={14} /> Call Now
       </a>
-      <a href="https://wa.me/919800000000" onClick={trackWa} className="topbar-wa" style={{
+      <a href={WA_LINK} onClick={trackWa} className="topbar-wa" style={{
         background: '#25D366', color: '#fff', fontSize: 11, fontWeight: 700,
         padding: '7px 14px', borderRadius: 4, display: 'none', alignItems: 'center', gap: 4,
       }}>
@@ -94,15 +97,15 @@ const UrgencyStrip = () => (
       display: 'inline-block', animation: 'pulse-dot 1.5s infinite', flexShrink: 0,
     }} />
     <span style={{ fontSize: 12, color: '#7a5c00' }}>
-      14 people contacted us about divorce cases today
+      12 people contacted us for legal help today
     </span>
   </div>
 );
 
 const avatars = [
-  { bg: '#c9a84c', initials: 'PR', textColor: 'var(--navy)' },
-  { bg: '#1a8f6e', initials: 'SM', textColor: '#fff' },
-  { bg: '#5a4ab5', initials: 'AK', textColor: '#fff' },
+  { bg: '#c9a84c', initials: 'SK', textColor: 'var(--navy)' },
+  { bg: '#1a8f6e', initials: 'PS', textColor: '#fff' },
+  { bg: '#5a4ab5', initials: 'GA', textColor: '#fff' },
   { bg: '#c0392b', initials: 'RD', textColor: '#fff' },
 ];
 
@@ -119,17 +122,17 @@ const HeroSection = () => (
           color: 'var(--gold)', fontSize: 10, fontWeight: 700, letterSpacing: '1.2px',
           textTransform: 'uppercase' as const, padding: '5px 12px', borderRadius: 20, marginBottom: 14,
         }}>
-          ⭐ Divorce Lawyer — Kolkata
+          ⚖️ Legal Services — Kolkata
         </div>
         <h1 style={{
           fontFamily: "'Playfair Display', serif", fontSize: 22, fontWeight: 700,
           color: '#fff', lineHeight: 1.32, marginBottom: 12,
         }} className="hero-h1">
-          Facing a Divorce in Kolkata? Get{' '}
-          <span style={{ color: 'var(--gold)' }}>Expert Legal Guidance</span> — Fast.
+          Need Legal Help in Kolkata?{' '}
+          <span style={{ color: 'var(--gold)' }}>28 Years of Trusted Expertise</span> — At Your Service.
         </h1>
         <p style={{ color: 'rgba(255,255,255,0.72)', fontSize: 13, lineHeight: 1.65, marginBottom: 18 }}>
-          15+ years | 500+ cases | Speak directly with the Advocate — no juniors, no delays.
+          28+ years | 500+ cases | Criminal · Civil · Family · Corporate · Immigration — speak directly with a Senior Advocate.
         </p>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
           <div style={{ display: 'flex' }}>
@@ -144,23 +147,23 @@ const HeroSection = () => (
             ))}
           </div>
           <span style={{ fontSize: 11.5, color: 'rgba(255,255,255,0.75)' }}>
-            500+ clients trusted us with their family law matters
+            500+ clients trusted us with their legal matters
           </span>
         </div>
-        <a href="https://wa.me/919800000000" onClick={trackWa} style={{
+        <a href={WA_LINK} onClick={trackWa} style={{
           width: '100%', background: '#25D366', color: '#fff', fontSize: 15, fontWeight: 700,
           padding: 15, borderRadius: 8, display: 'flex', alignItems: 'center',
           justifyContent: 'center', gap: 8, marginBottom: 10, border: 'none', cursor: 'pointer',
         }}>
           <WhatsAppSvg size={17} /> WhatsApp Us — Free Consult
         </a>
-        <a href="tel:+919800000000" onClick={trackCall} style={{
+        <a href={`tel:${PHONE}`} onClick={trackCall} style={{
           width: '100%', background: 'rgba(255,255,255,0.08)',
           border: '1px solid rgba(255,255,255,0.2)', color: '#fff',
           fontSize: 14, fontWeight: 600, padding: 12, borderRadius: 8,
           display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
         }}>
-          <PhoneSvg size={14} /> Call +91 98000 00000
+          <PhoneSvg size={14} /> Call {PHONE_DISPLAY}
         </a>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, marginTop: 12 }}>
           <span style={{ width: 6, height: 6, background: '#25D366', borderRadius: '50%', display: 'inline-block' }} />
@@ -176,10 +179,10 @@ const HeroSection = () => (
             width: 56, height: 56, borderRadius: '50%', background: 'var(--gold)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             fontSize: 20, fontWeight: 700, color: 'var(--navy)', marginBottom: 16,
-          }}>RM</div>
+          }}>SK</div>
           <div style={{ color: 'var(--gold)', fontSize: 11, fontWeight: 700, letterSpacing: 1.2, textTransform: 'uppercase' as const, marginBottom: 6 }}>Free Consultation</div>
-          <div style={{ fontFamily: "'Playfair Display', serif", color: '#fff', fontSize: 20, fontWeight: 700, marginBottom: 8 }}>Adv. Rajesh Mukherjee</div>
-          <div style={{ color: 'rgba(255,255,255,0.6)', fontSize: 13, lineHeight: 1.6 }}>Senior Advocate, High Court<br/>15+ years in Family & Divorce Law</div>
+          <div style={{ fontFamily: "'Playfair Display', serif", color: '#fff', fontSize: 20, fontWeight: 700, marginBottom: 8 }}>S K Legal Consultancy</div>
+          <div style={{ color: 'rgba(255,255,255,0.6)', fontSize: 13, lineHeight: 1.6 }}>Kolkata High Court Practitioner<br/>28+ Years in Legal Practice</div>
         </div>
       </div>
     </div>
@@ -190,8 +193,8 @@ const TrustStats = () => (
   <div style={{ background: '#fff', borderBottom: '1px solid var(--border-custom)', display: 'flex' }}>
     {[
       { num: '500', suffix: '+', label: 'Cases Handled', suffixColor: 'var(--gold)' },
-      { num: '15', suffix: '+', label: 'Yrs Practice', suffixColor: 'var(--gold)' },
-      { num: '', suffix: '4.9★', label: 'Google Rating', suffixColor: 'var(--gold)', allGold: true },
+      { num: '28', suffix: '+', label: 'Yrs Practice', suffixColor: 'var(--gold)' },
+      { num: '', suffix: '4.7★', label: 'Google Rating', suffixColor: 'var(--gold)', allGold: true },
     ].map((s, i) => (
       <div key={i} style={{
         flex: 1, textAlign: 'center', padding: '12px 6px',
@@ -206,8 +209,6 @@ const TrustStats = () => (
   </div>
 );
 
-/* ═══ NEW SECTIONS ═══ */
-
 const PainSection = () => (
   <section className="section-pad" style={{ background: 'var(--navy)', padding: '20px 16px' }}>
     <Eyebrow>THE REALITY</Eyebrow>
@@ -216,14 +217,14 @@ const PainSection = () => (
       borderLeft: '3px solid var(--gold)', borderRadius: '0 8px 8px 0', padding: 14,
       fontSize: 13, lineHeight: 1.7, color: 'rgba(255,255,255,0.82)',
     }}>
-      A divorce isn't just legal paperwork — it involves your <strong>assets</strong>, your <strong>children</strong>, and your <strong>financial future</strong>. Without proper legal support in Kolkata courts, a simple case can drag for years and cost you lakhs unnecessarily.
+      Legal problems don't wait — whether it's a <strong>criminal charge</strong>, a <strong>property dispute</strong>, a <strong>family matter</strong>, or a <strong>business compliance issue</strong>. Without the right legal counsel, simple cases can drag for years and cost you lakhs unnecessarily.
     </div>
   </section>
 );
 
 const steps = [
   { title: 'WhatsApp or Call Us', desc: 'Reach out instantly. No forms, no waiting. We respond within 30 minutes.' },
-  { title: 'Free Consultation', desc: 'Speak directly with Adv. Mukherjee. Understand your options — zero cost.' },
+  { title: 'Free Consultation', desc: 'Speak directly with a Senior Advocate. Understand your options — zero cost.' },
   { title: 'We Handle Everything', desc: 'From first filing to final order — you focus on life, we handle the courts.' },
 ];
 
@@ -253,15 +254,20 @@ const HowItWorks = () => (
 );
 
 const services = [
-  'Mutual Consent Divorce', 'Contested Divorce',
-  'Child Custody & Guardianship', 'Alimony & Maintenance',
-  'Domestic Violence', 'NRI Divorce Matters',
+  'Criminal Defence & Bail',
+  'Property & Civil Disputes',
+  'Divorce & Family Law',
+  'Child Custody & Alimony',
+  'Corporate & Business Law',
+  'Immigration & Visa Issues',
+  'Domestic Violence Cases',
+  'Real Estate & Land Matters',
 ];
 
 const ServicesSection = () => (
   <section className="section-pad" style={{ background: '#fff', padding: '20px 16px' }}>
     <Eyebrow>WHAT WE HANDLE</Eyebrow>
-    <SectionH2>Divorce & Family Law Services</SectionH2>
+    <SectionH2>Our Legal Practice Areas</SectionH2>
     <div className="services-grid">
       {services.map((s, i) => (
         <div key={i} style={{
@@ -275,8 +281,8 @@ const ServicesSection = () => (
 );
 
 const whyCards = [
-  { icon: <UserSvg />, title: 'Direct Access to the Advocate', desc: 'You speak with Adv. Mukherjee personally — not a junior. Senior attention from day one.' },
-  { icon: <BuildingSvg />, title: 'Kolkata Courts, Inside Out', desc: 'City Civil Court, Calcutta High Court, and district courts across West Bengal — we know them all.' },
+  { icon: <UserSvg />, title: 'Direct Access to Senior Advocates', desc: 'You speak with experienced advocates personally — not juniors. Senior attention from day one.' },
+  { icon: <BuildingSvg />, title: 'Kolkata Courts, Inside Out', desc: 'Kolkata High Court, City Civil Court, and district courts across West Bengal — 28 years of courtroom experience.' },
   { icon: <ShieldSvg />, title: 'Clear Fees, No Surprises', desc: 'Transparent pricing discussed upfront. No hidden charges, no shock bills mid-case.' },
 ];
 
@@ -305,15 +311,15 @@ const WhyChooseUs = () => (
 );
 
 const reviews = [
-  { text: 'Made my mutual divorce completely stress-free. He explained every step and resolved it in 6 months. Would absolutely recommend.', name: 'Priya S.', case: 'Mutual Divorce, Salt Lake' },
-  { text: 'Custody case was complex with my spouse living abroad. Rajesh Sir handled everything expertly. Got custody without unnecessary delays.', name: 'Arjun M.', case: 'Child Custody, Ballygunge' },
+  { text: 'The other staffs are also helpful and work as per your requirement. Highly professional and resolved my property case faster than expected.', name: 'Golam J.', case: 'Property Dispute, Newtown' },
+  { text: 'In any situation or any problem they solved quickly with best advice. Very satisfied with the way they handled my criminal matter.', name: 'Priyanka S.', case: 'Criminal Case, Chinar Park' },
+  { text: 'Excellent legal guidance throughout my divorce proceedings. They explained every step clearly and kept me informed at all times. Highly recommend.', name: 'Rahul D.', case: 'Divorce, Salt Lake' },
 ];
 
 const ReviewsSection = () => (
   <section className="section-pad" style={{ background: 'var(--off)', padding: '20px 16px' }}>
     <Eyebrow>CLIENT REVIEWS</Eyebrow>
     <SectionH2>What Our Clients Say</SectionH2>
-    {/* Google badge */}
     <div style={{
       display: 'inline-flex', alignItems: 'center', gap: 10,
       background: '#fff', border: '1px solid var(--border-custom)',
@@ -325,8 +331,8 @@ const ReviewsSection = () => (
         WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
       }}>G</span>
       <div>
-        <div style={{ fontSize: 13, fontWeight: 700, color: '#1c1c1c' }}>4.9 ★★★★★</div>
-        <div style={{ fontSize: 11, color: '#888' }}>140+ Google Reviews</div>
+        <div style={{ fontSize: 13, fontWeight: 700, color: '#1c1c1c' }}>4.7 ★★★★★</div>
+        <div style={{ fontSize: 11, color: '#888' }}>186 Google Reviews</div>
       </div>
     </div>
     <div className="review-cards" style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -348,10 +354,11 @@ const ReviewsSection = () => (
 );
 
 const faqs = [
-  { q: 'How long does a divorce take in Kolkata?', a: 'Mutual consent divorce: 6–8 months. Contested divorce: 2–4 years depending on complexity. The right legal strategy from day one significantly shortens timelines.' },
-  { q: 'Is the first consultation really free?', a: 'Yes — completely free, with Adv. Mukherjee directly (not a junior). Call or WhatsApp to schedule. No obligation to proceed after.' },
-  { q: "What if my spouse doesn't agree to the divorce?", a: 'A contested divorce can be filed on grounds of cruelty, desertion, or adultery under the Hindu Marriage Act. We\'ll assess your case in the free consultation.' },
-  { q: 'What about child custody and alimony?', a: 'Both can be claimed as part of the same divorce proceedings. Courts in Kolkata primarily consider the best interest of the child for custody decisions.' },
+  { q: 'What types of legal cases do you handle?', a: 'We handle criminal defence, civil & property disputes, family & divorce law, corporate matters, immigration cases, domestic violence, and real estate litigation across Kolkata courts.' },
+  { q: 'Is the first consultation really free?', a: 'Yes — completely free, with a Senior Advocate directly (not a junior). Call or WhatsApp to schedule. No obligation to proceed after.' },
+  { q: 'How long does a typical case take?', a: 'It varies by case type. Mutual consent divorce: 6–8 months. Criminal bail: can be same day. Property disputes: 1–3 years. We focus on the fastest resolution strategy from day one.' },
+  { q: 'Do you practise at the Kolkata High Court?', a: 'Yes. We regularly appear at the Kolkata High Court, City Civil Court, and district courts across West Bengal with 28+ years of courtroom experience.' },
+  { q: 'Can you help with immigration and visa issues?', a: 'Absolutely. We assist with visa applications, immigration appeals, deportation matters, and overseas legal documentation for Indian citizens and NRIs.' },
 ];
 
 const FaqSection = () => {
@@ -447,13 +454,13 @@ const CallbackForm = () => {
         </button>
       </form>
       <div style={{ display: 'flex', gap: 10, marginTop: 14 }}>
-        <a href="tel:+919800000000" onClick={trackCall} style={{
+        <a href={`tel:${PHONE}`} onClick={trackCall} style={{
           background: 'var(--gold)', color: 'var(--navy)', fontSize: 13, fontWeight: 700,
           padding: '10px 18px', borderRadius: 6, display: 'flex', alignItems: 'center', gap: 6,
         }}>
           <PhoneSvg size={14} /> Call Now
         </a>
-        <a href="https://wa.me/919800000000" onClick={trackWa} style={{
+        <a href={WA_LINK} onClick={trackWa} style={{
           background: '#25D366', color: '#fff', fontSize: 13, fontWeight: 700,
           padding: '10px 18px', borderRadius: 6, display: 'flex', alignItems: 'center', gap: 6,
         }}>
@@ -470,10 +477,10 @@ const Footer = () => (
     fontSize: 11, color: 'rgba(255,255,255,0.35)', lineHeight: 1.9,
   }}>
     <div style={{ fontWeight: 600, color: 'rgba(255,255,255,0.6)' }}>
-      Adv. Rajesh Mukherjee & Associates
+      S K Legal Consultancy & Services
     </div>
-    <div>Bar Council Reg. · All consultations strictly confidential</div>
-    <div>Kolkata, West Bengal</div>
+    <div>Kolkata High Court Practitioner · All consultations strictly confidential</div>
+    <div>2nd Floor, Chinar Park, Newtown, Kolkata 700136</div>
   </footer>
 );
 
@@ -483,14 +490,14 @@ const StickyBottomBar = () => (
     background: 'var(--navy)', borderTop: '1px solid rgba(255,255,255,0.08)',
     padding: '10px 16px 16px', display: 'flex', gap: 10,
   }}>
-    <a href="https://wa.me/919800000000?text=Hi%2C%20I%20need%20help%20with%20a%20divorce%20matter%20in%20Kolkata." target="_blank" rel="noopener" onClick={trackWa} style={{
+    <a href={WA_LINK_MSG} target="_blank" rel="noopener" onClick={trackWa} style={{
       flex: 1.4, background: '#25D366', color: '#fff', fontSize: 13, fontWeight: 700,
       padding: '13px 10px', borderRadius: 8, border: 'none',
       display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 7,
     }}>
       <WhatsAppSvg size={15} /> WhatsApp Now
     </a>
-    <a href="tel:+919800000000" onClick={trackCall} style={{
+    <a href={`tel:${PHONE}`} onClick={trackCall} style={{
       flex: 1, background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.2)',
       color: '#fff', fontSize: 13, fontWeight: 600,
       padding: '13px 10px', borderRadius: 8,
