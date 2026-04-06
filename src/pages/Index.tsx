@@ -53,6 +53,9 @@ const SectionH2 = ({ children, white }: { children: string; white?: boolean }) =
 
 /* ═══ EXISTING SECTIONS ═══ */
 
+const trackWa = () => { if (typeof gtag !== 'undefined') gtag('event', 'whatsapp_click'); };
+const trackCall = () => { if (typeof gtag !== 'undefined') gtag('event', 'call_click'); };
+
 const StickyTopbar = () => (
   <header style={{
     position: 'sticky', top: 0, zIndex: 100,
@@ -65,13 +68,13 @@ const StickyTopbar = () => (
       <span style={{ color: '#fff' }}> & Associates</span>
     </div>
     <div style={{ display: 'flex', gap: 8 }}>
-      <a href="tel:+919800000000" style={{
+      <a href="tel:+919800000000" onClick={trackCall} style={{
         background: 'var(--gold)', color: 'var(--navy)', fontSize: 11, fontWeight: 700,
         padding: '7px 14px', borderRadius: 4, display: 'inline-flex', alignItems: 'center', gap: 4,
       }}>
         <PhoneSvg size={14} /> Call Now
       </a>
-      <a href="https://wa.me/919800000000" className="topbar-wa" style={{
+      <a href="https://wa.me/919800000000" onClick={trackWa} className="topbar-wa" style={{
         background: '#25D366', color: '#fff', fontSize: 11, fontWeight: 700,
         padding: '7px 14px', borderRadius: 4, display: 'none', alignItems: 'center', gap: 4,
       }}>
