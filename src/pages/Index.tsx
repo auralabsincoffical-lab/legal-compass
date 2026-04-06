@@ -53,8 +53,8 @@ const SectionH2 = ({ children, white }: { children: string; white?: boolean }) =
 
 const PHONE = '+918240844919';
 const PHONE_DISPLAY = '+91 82408 44919';
-const WA_LINK = 'https://wa.me/918240844919';
-const WA_LINK_MSG = 'https://wa.me/918240844919?text=Hi%2C%20I%20need%20legal%20assistance.%20Please%20call%20me%20back.';
+const WA_LINK = 'https://api.whatsapp.com/send?phone=918240844919';
+const WA_LINK_MSG = 'https://api.whatsapp.com/send?phone=918240844919&text=Hi%2C%20I%20need%20legal%20assistance.%20Please%20call%20me%20back.';
 
 const trackWa = () => { if (typeof gtag !== 'undefined') gtag('event', 'whatsapp_click'); };
 const trackCall = () => { if (typeof gtag !== 'undefined') gtag('event', 'call_click'); };
@@ -63,26 +63,27 @@ const StickyTopbar = () => (
   <header style={{
     position: 'sticky', top: 0, zIndex: 100,
     background: 'var(--navy)', padding: '12px 16px',
-    display: 'flex', justifyContent: 'space-between', alignItems: 'center',
   }}>
-    <div style={{ fontSize: 12, fontWeight: 600 }}>
-      <span style={{ color: '#fff' }}>S K </span>
-      <span style={{ color: 'var(--gold)' }}>Legal Consultancy</span>
-      <span style={{ color: '#fff' }}> & Services</span>
-    </div>
-    <div style={{ display: 'flex', gap: 8 }}>
-      <a href={`tel:${PHONE}`} onClick={trackCall} style={{
-        background: 'var(--gold)', color: 'var(--navy)', fontSize: 11, fontWeight: 700,
-        padding: '7px 14px', borderRadius: 4, display: 'inline-flex', alignItems: 'center', gap: 4,
-      }}>
-        <PhoneSvg size={14} /> Call Now
-      </a>
-      <a href={WA_LINK} onClick={trackWa} className="topbar-wa" style={{
-        background: '#25D366', color: '#fff', fontSize: 11, fontWeight: 700,
-        padding: '7px 14px', borderRadius: 4, display: 'none', alignItems: 'center', gap: 4,
-      }}>
-        <WhatsAppSvg size={14} /> WhatsApp
-      </a>
+    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: 1100, margin: '0 auto' }}>
+      <div style={{ fontSize: 12, fontWeight: 600 }}>
+        <span style={{ color: '#fff' }}>S K </span>
+        <span style={{ color: 'var(--gold)' }}>Legal Consultancy</span>
+        <span style={{ color: '#fff' }}> & Services</span>
+      </div>
+      <div style={{ display: 'flex', gap: 8 }}>
+        <a href={`tel:${PHONE}`} onClick={trackCall} style={{
+          background: 'var(--gold)', color: 'var(--navy)', fontSize: 11, fontWeight: 700,
+          padding: '7px 14px', borderRadius: 4, display: 'inline-flex', alignItems: 'center', gap: 4,
+        }}>
+          <PhoneSvg size={14} /> Call Now
+        </a>
+        <a href={WA_LINK} target="_blank" rel="noopener noreferrer" onClick={trackWa} className="topbar-wa" style={{
+          background: '#25D366', color: '#fff', fontSize: 11, fontWeight: 700,
+          padding: '7px 14px', borderRadius: 4, display: 'none', alignItems: 'center', gap: 4,
+        }}>
+          <WhatsAppSvg size={14} /> WhatsApp
+        </a>
+      </div>
     </div>
   </header>
 );
@@ -90,15 +91,17 @@ const StickyTopbar = () => (
 const UrgencyStrip = () => (
   <div style={{
     background: '#fef3cd', borderBottom: '1px solid #f5d98f',
-    padding: '8px 16px', display: 'flex', alignItems: 'center', gap: 8,
+    padding: '8px 16px',
   }}>
-    <span style={{
-      width: 8, height: 8, background: '#e8a000', borderRadius: '50%',
-      display: 'inline-block', animation: 'pulse-dot 1.5s infinite', flexShrink: 0,
-    }} />
-    <span style={{ fontSize: 12, color: '#7a5c00' }}>
-      12 people contacted us for legal help today
-    </span>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 8, maxWidth: 1100, margin: '0 auto' }}>
+      <span style={{
+        width: 8, height: 8, background: '#e8a000', borderRadius: '50%',
+        display: 'inline-block', animation: 'pulse-dot 1.5s infinite', flexShrink: 0,
+      }} />
+      <span style={{ fontSize: 12, color: '#7a5c00' }}>
+        12 people contacted us for legal help today
+      </span>
+    </div>
   </div>
 );
 
@@ -132,7 +135,7 @@ const HeroSection = () => (
           <span style={{ color: 'var(--gold)' }}>28 Years of Trusted Expertise</span> — At Your Service.
         </h1>
         <p style={{ color: 'rgba(255,255,255,0.72)', fontSize: 13, lineHeight: 1.65, marginBottom: 18 }}>
-          28+ years | 500+ cases | Criminal · Civil · Family · Corporate · Immigration — speak directly with a Senior Advocate.
+          28+ years | 500+ cases | Criminal · Civil · Family · Divorce · Corporate · Immigration — speak directly with a Senior Advocate.
         </p>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
           <div style={{ display: 'flex' }}>
@@ -150,21 +153,23 @@ const HeroSection = () => (
             500+ clients trusted us with their legal matters
           </span>
         </div>
-        <a href={WA_LINK} onClick={trackWa} style={{
-          width: '100%', background: '#25D366', color: '#fff', fontSize: 15, fontWeight: 700,
-          padding: 15, borderRadius: 8, display: 'flex', alignItems: 'center',
-          justifyContent: 'center', gap: 8, marginBottom: 10, border: 'none', cursor: 'pointer',
-        }}>
-          <WhatsAppSvg size={17} /> WhatsApp Us — Free Consult
-        </a>
-        <a href={`tel:${PHONE}`} onClick={trackCall} style={{
-          width: '100%', background: 'rgba(255,255,255,0.08)',
-          border: '1px solid rgba(255,255,255,0.2)', color: '#fff',
-          fontSize: 14, fontWeight: 600, padding: 12, borderRadius: 8,
-          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-        }}>
-          <PhoneSvg size={14} /> Call {PHONE_DISPLAY}
-        </a>
+        <div className="hero-buttons" style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 10, maxWidth: 400 }}>
+          <a href={WA_LINK} target="_blank" rel="noopener noreferrer" onClick={trackWa} style={{
+            width: '100%', background: '#25D366', color: '#fff', fontSize: 15, fontWeight: 700,
+            padding: 15, borderRadius: 8, display: 'flex', alignItems: 'center',
+            justifyContent: 'center', gap: 8, border: 'none', cursor: 'pointer',
+          }}>
+            <WhatsAppSvg size={17} /> WhatsApp Us
+          </a>
+          <a href={`tel:${PHONE}`} onClick={trackCall} style={{
+            width: '100%', background: 'rgba(255,255,255,0.08)',
+            border: '1px solid rgba(255,255,255,0.2)', color: '#fff',
+            fontSize: 14, fontWeight: 600, padding: 12, borderRadius: 8,
+            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+          }}>
+            <PhoneSvg size={14} /> Call {PHONE_DISPLAY}
+          </a>
+        </div>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, marginTop: 12 }}>
           <span style={{ width: 6, height: 6, background: '#25D366', borderRadius: '50%', display: 'inline-block' }} />
           <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.55)' }}>We respond within 30 minutes · Mon–Sat</span>
@@ -180,7 +185,7 @@ const HeroSection = () => (
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             fontSize: 20, fontWeight: 700, color: 'var(--navy)', marginBottom: 16,
           }}>SK</div>
-          <div style={{ color: 'var(--gold)', fontSize: 11, fontWeight: 700, letterSpacing: 1.2, textTransform: 'uppercase' as const, marginBottom: 6 }}>Free Consultation</div>
+          <div style={{ color: 'var(--gold)', fontSize: 11, fontWeight: 700, letterSpacing: 1.2, textTransform: 'uppercase' as const, marginBottom: 6 }}>Initial Assessment</div>
           <div style={{ fontFamily: "'Playfair Display', serif", color: '#fff', fontSize: 20, fontWeight: 700, marginBottom: 8 }}>S K Legal Consultancy</div>
           <div style={{ color: 'rgba(255,255,255,0.6)', fontSize: 13, lineHeight: 1.6 }}>Kolkata High Court Practitioner<br/>28+ Years in Legal Practice</div>
         </div>
@@ -190,22 +195,24 @@ const HeroSection = () => (
 );
 
 const TrustStats = () => (
-  <div style={{ background: '#fff', borderBottom: '1px solid var(--border-custom)', display: 'flex' }}>
-    {[
-      { num: '500', suffix: '+', label: 'Cases Handled', suffixColor: 'var(--gold)' },
-      { num: '28', suffix: '+', label: 'Yrs Practice', suffixColor: 'var(--gold)' },
-      { num: '', suffix: '4.7★', label: 'Google Rating', suffixColor: 'var(--gold)', allGold: true },
-    ].map((s, i) => (
-      <div key={i} style={{
-        flex: 1, textAlign: 'center', padding: '12px 6px',
-        borderRight: i < 2 ? '1px solid var(--border-custom)' : 'none',
-      }}>
-        <div style={{ fontFamily: "'Playfair Display', serif", fontSize: 17, fontWeight: 700, color: s.allGold ? 'var(--gold)' : 'var(--navy)' }}>
-          {s.num}<span style={{ color: s.suffixColor }}>{s.suffix}</span>
+  <div style={{ background: '#fff', borderBottom: '1px solid var(--border-custom)' }}>
+    <div style={{ display: 'flex', maxWidth: 1100, margin: '0 auto' }}>
+      {[
+        { num: '500', suffix: '+', label: 'Cases Handled', suffixColor: 'var(--gold)' },
+        { num: '28', suffix: '+', label: 'Yrs Practice', suffixColor: 'var(--gold)' },
+        { num: '', suffix: '4.7★', label: 'Google Rating', suffixColor: 'var(--gold)', allGold: true },
+      ].map((s, i) => (
+        <div key={i} style={{
+          flex: 1, textAlign: 'center', padding: '12px 6px',
+          borderRight: i < 2 ? '1px solid var(--border-custom)' : 'none',
+        }}>
+          <div style={{ fontFamily: "'Playfair Display', serif", fontSize: 17, fontWeight: 700, color: s.allGold ? 'var(--gold)' : 'var(--navy)' }}>
+            {s.num}<span style={{ color: s.suffixColor }}>{s.suffix}</span>
+          </div>
+          <div style={{ fontSize: 10.5, color: '#888', textTransform: 'uppercase' as const, marginTop: 2 }}>{s.label}</div>
         </div>
-        <div style={{ fontSize: 10.5, color: '#888', textTransform: 'uppercase' as const, marginTop: 2 }}>{s.label}</div>
-      </div>
-    ))}
+      ))}
+    </div>
   </div>
 );
 
@@ -224,7 +231,7 @@ const PainSection = () => (
 
 const steps = [
   { title: 'WhatsApp or Call Us', desc: 'Reach out instantly. No forms, no waiting. We respond within 30 minutes.' },
-  { title: 'Free Consultation', desc: 'Speak directly with a Senior Advocate. Understand your options — zero cost.' },
+  { title: 'Case Evaluation', desc: 'Speak directly with a Senior Advocate to understand your legal options thoroughly.' },
   { title: 'We Handle Everything', desc: 'From first filing to final order — you focus on life, we handle the courts.' },
 ];
 
@@ -355,7 +362,7 @@ const ReviewsSection = () => (
 
 const faqs = [
   { q: 'What types of legal cases do you handle?', a: 'We handle criminal defence, civil & property disputes, family & divorce law, corporate matters, immigration cases, domestic violence, and real estate litigation across Kolkata courts.' },
-  { q: 'Is the first consultation really free?', a: 'Yes — completely free, with a Senior Advocate directly (not a junior). Call or WhatsApp to schedule. No obligation to proceed after.' },
+  { q: 'How does the initial case evaluation work?', a: 'You will speak directly with a Senior Advocate (not a junior) to assess your matter. Call or WhatsApp to schedule your evaluation.' },
   { q: 'How long does a typical case take?', a: 'It varies by case type. Mutual consent divorce: 6–8 months. Criminal bail: can be same day. Property disputes: 1–3 years. We focus on the fastest resolution strategy from day one.' },
   { q: 'Do you practise at the Kolkata High Court?', a: 'Yes. We regularly appear at the Kolkata High Court, City Civil Court, and district courts across West Bengal with 28+ years of courtroom experience.' },
   { q: 'Can you help with immigration and visa issues?', a: 'Absolutely. We assist with visa applications, immigration appeals, deportation matters, and overseas legal documentation for Indian citizens and NRIs.' },
@@ -396,80 +403,6 @@ const FaqSection = () => {
   );
 };
 
-const CallbackForm = () => {
-  const [submitted, setSubmitted] = useState(false);
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const name = (form.elements.namedItem('name') as HTMLInputElement).value;
-    const phone = (form.elements.namedItem('phone') as HTMLInputElement).value;
-    if (!phone) { alert('Please enter your phone number'); return; }
-    setSubmitted(true);
-    fetch('/api/leads', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, phone, source: 'form', timestamp: new Date() }),
-    }).catch(() => {});
-  };
-
-  if (submitted) {
-    return (
-      <section className="section-pad" style={{ background: '#fff', padding: '20px 16px' }}>
-        <div style={{ textAlign: 'center', padding: '20px 0' }}>
-          <div style={{ fontSize: 24, marginBottom: 8 }}>✓</div>
-          <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--navy)' }}>
-            Thank you! We'll call you back within 30 minutes.
-          </div>
-        </div>
-      </section>
-    );
-  }
-
-  const inputStyle: React.CSSProperties = {
-    width: '100%', padding: '12px 14px', border: '1px solid var(--border-custom)',
-    borderRadius: 8, fontSize: 14, fontFamily: "'DM Sans', sans-serif",
-    outline: 'none', transition: 'border-color 0.2s',
-  };
-
-  return (
-    <section className="section-pad" style={{ background: '#fff', padding: '20px 16px' }}>
-      <Eyebrow>NOT READY TO CALL?</Eyebrow>
-      <h2 style={{
-        fontFamily: "'Playfair Display', serif", fontSize: 17, fontWeight: 700,
-        color: 'var(--navy)', marginBottom: 14,
-      }}>Request a Callback — Just Leave Your Number.</h2>
-      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 10, maxWidth: 460 }}>
-        <input name="name" type="text" placeholder="Your Name" style={inputStyle}
-          onFocus={e => e.currentTarget.style.borderColor = 'var(--gold)'}
-          onBlur={e => e.currentTarget.style.borderColor = 'var(--border-custom)'} />
-        <input name="phone" type="tel" placeholder="Phone Number" required style={inputStyle}
-          onFocus={e => e.currentTarget.style.borderColor = 'var(--gold)'}
-          onBlur={e => e.currentTarget.style.borderColor = 'var(--border-custom)'} />
-        <button type="submit" style={{
-          width: '100%', background: 'var(--gold)', color: 'var(--navy)',
-          fontSize: 14, fontWeight: 700, padding: 14, borderRadius: 8, border: 'none',
-          cursor: 'pointer', fontFamily: "'DM Sans', sans-serif", transition: 'opacity 0.2s',
-        }} onMouseEnter={e => e.currentTarget.style.opacity = '0.88'}
-           onMouseLeave={e => e.currentTarget.style.opacity = '1'}>
-          Request Free Callback →
-        </button>
-      </form>
-      <div style={{ display: 'flex', gap: 10, marginTop: 14 }}>
-        <a href={`tel:${PHONE}`} onClick={trackCall} style={{
-          background: 'var(--gold)', color: 'var(--navy)', fontSize: 13, fontWeight: 700,
-          padding: '10px 18px', borderRadius: 6, display: 'flex', alignItems: 'center', gap: 6,
-        }}>
-          <PhoneSvg size={14} /> Call Now
-        </a>
-        <a href={WA_LINK} onClick={trackWa} style={{
-          background: '#25D366', color: '#fff', fontSize: 13, fontWeight: 700,
-          padding: '10px 18px', borderRadius: 6, display: 'flex', alignItems: 'center', gap: 6,
-        }}>
-          <WhatsAppSvg size={15} /> WhatsApp
-        </a>
-      </div>
-    </section>
-  );
-};
 
 const Footer = () => (
   <footer style={{
@@ -520,7 +453,6 @@ const Index = () => (
     <WhyChooseUs />
     <ReviewsSection />
     <FaqSection />
-    <CallbackForm />
     <Footer />
     <StickyBottomBar />
   </>
