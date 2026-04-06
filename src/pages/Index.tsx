@@ -329,7 +329,7 @@ const ReviewsSection = () => (
         <div style={{ fontSize: 11, color: '#888' }}>140+ Google Reviews</div>
       </div>
     </div>
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+    <div className="review-cards" style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
       {reviews.map((r, i) => (
         <div key={i} style={{
           background: '#fff', border: '1px solid var(--border-custom)',
