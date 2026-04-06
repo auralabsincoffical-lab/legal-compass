@@ -147,14 +147,14 @@ const HeroSection = () => (
             500+ clients trusted us with their family law matters
           </span>
         </div>
-        <a href="https://wa.me/919800000000" style={{
+        <a href="https://wa.me/919800000000" onClick={trackWa} style={{
           width: '100%', background: '#25D366', color: '#fff', fontSize: 15, fontWeight: 700,
           padding: 15, borderRadius: 8, display: 'flex', alignItems: 'center',
           justifyContent: 'center', gap: 8, marginBottom: 10, border: 'none', cursor: 'pointer',
         }}>
           <WhatsAppSvg size={17} /> WhatsApp Us — Free Consult
         </a>
-        <a href="tel:+919800000000" style={{
+        <a href="tel:+919800000000" onClick={trackCall} style={{
           width: '100%', background: 'rgba(255,255,255,0.08)',
           border: '1px solid rgba(255,255,255,0.2)', color: '#fff',
           fontSize: 14, fontWeight: 600, padding: 12, borderRadius: 8,
