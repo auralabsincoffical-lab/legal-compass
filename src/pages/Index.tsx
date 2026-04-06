@@ -259,7 +259,7 @@ const services = [
 ];
 
 const ServicesSection = () => (
-  <section style={{ background: '#fff', padding: '20px 16px' }}>
+  <section className="section-pad" style={{ background: '#fff', padding: '20px 16px' }}>
     <Eyebrow>WHAT WE HANDLE</Eyebrow>
     <SectionH2>Divorce & Family Law Services</SectionH2>
     <div className="services-grid">
