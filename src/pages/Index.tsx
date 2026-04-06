@@ -281,7 +281,7 @@ const whyCards = [
 ];
 
 const WhyChooseUs = () => (
-  <section style={{ background: 'var(--off)', padding: '20px 16px' }}>
+  <section className="section-pad" style={{ background: 'var(--off)', padding: '20px 16px' }}>
     <Eyebrow>WHY CHOOSE US</Eyebrow>
     <SectionH2>What Sets Us Apart</SectionH2>
     <div className="why-cards">
