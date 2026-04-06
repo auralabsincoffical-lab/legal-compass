@@ -310,7 +310,7 @@ const reviews = [
 ];
 
 const ReviewsSection = () => (
-  <section style={{ background: 'var(--off)', padding: '20px 16px' }}>
+  <section className="section-pad" style={{ background: 'var(--off)', padding: '20px 16px' }}>
     <Eyebrow>CLIENT REVIEWS</Eyebrow>
     <SectionH2>What Our Clients Say</SectionH2>
     {/* Google badge */}
