@@ -209,7 +209,7 @@ const TrustStats = () => (
 /* ═══ NEW SECTIONS ═══ */
 
 const PainSection = () => (
-  <section style={{ background: 'var(--navy)', padding: '20px 16px' }}>
+  <section className="section-pad" style={{ background: 'var(--navy)', padding: '20px 16px' }}>
     <Eyebrow>THE REALITY</Eyebrow>
     <div style={{
       background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(201,168,76,0.2)',
