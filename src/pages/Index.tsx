@@ -57,7 +57,8 @@ const WA_LINK = 'https://api.whatsapp.com/send?phone=918240844919';
 const WA_LINK_MSG = 'https://api.whatsapp.com/send?phone=918240844919&text=Hi%2C%20I%20need%20legal%20assistance.%20Please%20call%20me%20back.';
 
 const trackWa = () => { if (typeof gtag !== 'undefined') gtag('event', 'whatsapp_click'); };
-const trackCall = () => { if (typeof gtag !== 'undefined') gtag('event', 'call_click'); };
+declare function gtag_report_conversion(url?: string): boolean;
+const trackCall = () => { if (typeof gtag !== 'undefined') gtag_report_conversion(`tel:${PHONE}`); };
 
 const StickyTopbar = () => (
   <header style={{
@@ -71,7 +72,7 @@ const StickyTopbar = () => (
         <span style={{ color: '#fff' }}> & Services</span>
       </div>
       <div style={{ display: 'flex', gap: 8 }}>
-        <a href={`tel:${PHONE}`} onClick={trackCall} style={{
+        <a href={`tel:${PHONE}`} onClick={() => { gtag_report_conversion(`tel:${PHONE}`); }} style={{
           background: 'var(--gold)', color: 'var(--navy)', fontSize: 11, fontWeight: 700,
           padding: '7px 14px', borderRadius: 4, display: 'inline-flex', alignItems: 'center', gap: 4,
         }}>
@@ -161,7 +162,7 @@ const HeroSection = () => (
           }}>
             <WhatsAppSvg size={17} /> WhatsApp Us
           </a>
-          <a href={`tel:${PHONE}`} onClick={trackCall} style={{
+          <a href={`tel:${PHONE}`} onClick={() => { gtag_report_conversion(`tel:${PHONE}`); }} style={{
             width: '100%', background: 'rgba(255,255,255,0.08)',
             border: '1px solid rgba(255,255,255,0.2)', color: '#fff',
             fontSize: 14, fontWeight: 600, padding: 12, borderRadius: 8,
@@ -430,7 +431,7 @@ const StickyBottomBar = () => (
     }}>
       <WhatsAppSvg size={15} /> WhatsApp Now
     </a>
-    <a href={`tel:${PHONE}`} onClick={trackCall} style={{
+    <a href={`tel:${PHONE}`} onClick={() => { gtag_report_conversion(`tel:${PHONE}`); }} style={{
       flex: 1, background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.2)',
       color: '#fff', fontSize: 13, fontWeight: 600,
       padding: '13px 10px', borderRadius: 8,
